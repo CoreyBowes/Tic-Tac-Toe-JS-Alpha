@@ -1,7 +1,7 @@
 /*
 TicTacToe.js version 1.0 beta
 Corey Bowes
-12/09/2017
+Last modified 01/21/2018
 
 Summary: Allows the user to play Tic Tac Toe against a computer opponent.
 Code layout:
