@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body id="myBody">
+<canvas id="myCanvas" width="1100" height="550">
+</canvas>
+<script type="text/javascript">
+var levelButtons=[];
+var currentButton=null;
+var numberOfButtons=10;
+var topStart=50;
+var topPosition=topStart;
+var topIncrement=100;
+var leftStart=50;
+var leftPosition=leftStart;
+var leftIncrement=100;
+for(i=0; i<numberOfButtons; i++)
+{
+    currentButton=document.createElement("button");
+    currentButton.style.display="none";
+    currentButton.style.position="absolute";
+    currentButton.style.top=topPosition+"px";
+    currentButton.style.left=leftPosition+"px";
+    // currentButton.addEventListener("click", playLevel(i));
+    // currentButton.onclick="playLevel("+i+")";
+    ((i2) => {
+        currentButton.onclick=function() { playLevel(i2); };
+    })(i)
+    currentButton.innerHTML=i+1;
+    document.body.appendChild(currentButton);
+    levelButtons.push(currentButton);
+    leftPosition+=leftIncrement;
+    if(leftPosition>=500)
+    {
+        leftPosition=leftStart;
+        topPosition+=topIncrement;
+    }
+}
+</script>
+<button id="reset" type="Button" onclick="reset()" style="position: absolute; top: 480px; left: 400px; display: none">Reset</button>
+<button id="levelSelect" type="Button" onclick="levelSelect()" style="position: absolute; top: 480px; left: 260px">Level Select</button>
+<button id="practice" type="Button" onclick="practice()" style="position: absolute; top: 520px; left: 260px">Practice</button>
+<button id="mainMenu" type="Button" onclick="mainMenu()" style="position: absolute; top: 480px; left: 30px">Main Menu</button>
+<button id="watchCvC" type="Button" onclick="watchCvC()" style="position: absolute; top: 520px; left: 30px">Watch Computer vs Computer</button>
+<button id="nextLevel" type="Button" onclick="nextLevel()" style="position: absolute; top: 480px; left: 400px; display: none">Next Level</button>
+<button id="start" type="Button" onclick="start()" style="position: absolute; top: 480px; left: 540px; display: none">Start/Stop</button>
+<p id="difficultySelectText" style="position: absolute; top: 485px; left: 400px; display: none">X Player Difficulty:</p>
+<select id="difficultySelect" name="AI Difficulty: " style="position: absolute; top: 520px; left: 400px; display: none">
+  <option value="0" onclick="changeDifficulty(0)">00 - Very Easy</option>
+  <option value="1" onclick="changeDifficulty(1)">01 - Easy (Random)</option>
+  <option value="2" onclick="changeDifficulty(2)">02 - Medium</option>
+  <option value="3" onclick="changeDifficulty(3)">03 - Hard</option>
+  <option value="4" onclick="changeDifficulty(4)">04 - Impossible</option>
+</select> 
+<p id="difficultySelectText2" style="position: absolute; top: 485px; left: 540px; display: none">O Player Difficulty:</p>
+<select id="difficultySelect2" name="AI #2 Difficulty: " style="position: absolute; top: 520px; left: 540px; display: none">
+  <option value="0" onclick="changeDifficulty2(0)">00 - Very Easy</option>
+  <option value="1" onclick="changeDifficulty2(1)">01 - Easy (Random)</option>
+  <option value="2" onclick="changeDifficulty2(2)">02 - Medium</option>
+  <option value="3" onclick="changeDifficulty2(3)">03 - Hard</option>
+  <option value="4" onclick="changeDifficulty2(4)">04 - Impossible</option>
+</select> 
+<select id="intervalSelect" name="Play interval: " style="position: absolute; top: 520px; left: 680px; display: none">
+  <option value="0" onclick="changeInterval(2000)">Slow (2sec)</option>
+  <option value="1" onclick="changeInterval(1000)">Medium (1sec)</option>
+  <option value="2" onclick="changeInterval(500)">Fast (.5sec)</option>
+  <option value="2" onclick="changeInterval(250)">Very Fast (.25sec)</option>
+  <option value="3" onclick="changeInterval(0)">Instant</option> <!-- setInterval cannot set values below 10, a special function would be needed to be truly instant.-->
+</select> 
+<input id="numberOfGamesSelect" type="number" onchange="updateNumberOfGames()" value="1" min="1" style="position: absolute; top: 520px; left: 820px; display: none">
+<script type="text/javascript" src="TicTacToe.js"></script>
+</body>
+</html>
