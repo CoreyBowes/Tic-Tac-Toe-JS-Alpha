@@ -9,9 +9,8 @@ Code layout:
 makeBoard object methods (these have to go at the start so that an object using the makeBoard() constructor can be declared)
 global variables
 function declarations
-page initialization code
 function initializations
-more page initialization code
+page initialization code
 
  */
 
